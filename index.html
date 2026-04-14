@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TRAID — TSEW RAID Manager</title>
+    <meta
+      name="description"
+      content="TRAID is a web-based storage management appliance for Debian with tier-slicing RAID, filesystem tools, VM and container management, backups, and file sharing."
+    />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f7f8fb;
+        --bg-soft: #ffffff;
+        --text: #10182b;
+        --muted: #4c5770;
+        --border: #dbe1ef;
+        --primary: #5f5cff;
+        --primary-2: #30d7ff;
+        --ok: #0f9d58;
+        --shadow: 0 12px 32px rgba(23, 41, 82, 0.12);
+      }
+
+      :root[data-theme="dark"] {
+        --bg: #090d18;
+        --bg-soft: #131b2e;
+        --text: #ecf1ff;
+        --muted: #a7b2cb;
+        --border: #27314a;
+        --primary: #7a77ff;
+        --primary-2: #2de1ff;
+        --ok: #23d68a;
+        --shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        background: radial-gradient(circle at top right, color-mix(in oklab, var(--primary) 18%, transparent), transparent 34%), var(--bg);
+        color: var(--text);
+        line-height: 1.5;
+      }
+
+      .container {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 28px;
+      }
+
+      .logo {
+        font-weight: 800;
+        letter-spacing: 0.02em;
+      }
+
+      .badge {
+        display: inline-block;
+        font-size: 0.78rem;
+        margin-left: 8px;
+        color: var(--primary);
+      }
+
+      .controls {
+        display: flex;
+        gap: 10px;
+      }
+
+      .btn {
+        border: 1px solid var(--border);
+        background: var(--bg-soft);
+        color: var(--text);
+        border-radius: 10px;
+        padding: 10px 14px;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .btn:hover {
+        border-color: var(--primary);
+      }
+
+      .btn.primary {
+        border: 0;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        color: #fff;
+      }
+
+      .hero {
+        padding: 34px;
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        background: color-mix(in oklab, var(--bg-soft) 94%, transparent);
+        box-shadow: var(--shadow);
+        margin-bottom: 24px;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 3.8vw, 3.4rem);
+        line-height: 1.1;
+        margin: 0 0 10px;
+      }
+
+      p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .hero p {
+        max-width: 70ch;
+        margin-bottom: 20px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        margin-bottom: 24px;
+      }
+
+      .card {
+        background: var(--bg-soft);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 18px;
+      }
+
+      .card h3 {
+        margin-top: 0;
+        margin-bottom: 8px;
+      }
+
+      .kpi {
+        font-size: 1.7rem;
+        font-weight: 800;
+        color: var(--ok);
+      }
+
+      .algorithm-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+      }
+
+      .algorithm-table th,
+      .algorithm-table td {
+        border: 1px solid var(--border);
+        padding: 8px 10px;
+        text-align: left;
+      }
+
+      .architecture {
+        white-space: pre;
+        overflow-x: auto;
+        padding: 16px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: color-mix(in oklab, var(--bg-soft) 88%, transparent);
+        color: var(--muted);
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--muted);
+      }
+
+      footer {
+        margin: 28px 0 10px;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <nav class="nav">
+        <div class="logo">TRAID <span class="badge">TSEW RAID Manager</span></div>
+        <div class="controls">
+          <button id="theme-toggle" class="btn" type="button" aria-label="Toggle theme">Toggle theme</button>
+          <a class="btn" href="https://github.com/albal/traid" target="_blank" rel="noreferrer">Original Repo</a>
+        </div>
+      </nav>
+
+      <section class="hero">
+        <h1>Storage that stops wasting mixed-drive capacity.</h1>
+        <p>
+          TRAID is a web-based Debian appliance that pools mismatched disks into one logical volume
+          using tier slicing. Manage arrays, filesystems, virtual machines, Docker containers, scheduled
+          backups, and file sharing — all from the browser.
+        </p>
+        <div class="controls">
+          <a class="btn primary" href="https://github.com/albal/traid" target="_blank" rel="noreferrer">View TRAID on GitHub</a>
+          <a class="btn" href="https://github.com/albal/traid-www" target="_blank" rel="noreferrer">Website Source</a>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <h3>Tier-sliced RAID</h3>
+          <p>Sort drives by size, form equal-slice RAID tiers, then join tiers into one LVM logical volume.</p>
+          <div class="kpi">+4 TB</div>
+          <p>Recovered in the 3×4 TB + 1×2 TB TRAID-1 example compared to naive RAID 5 sizing.</p>
+        </article>
+        <article class="card">
+          <h3>Redundancy modes</h3>
+          <ul>
+            <li><strong>TRAID-1:</strong> 1 drive fault tolerance (RAID 5/1 by tier)</li>
+            <li><strong>TRAID-2:</strong> 2 drive fault tolerance (RAID 6 by tier)</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Split privilege security</h3>
+          <ul>
+            <li>Web app runs as <code>www-data</code></li>
+            <li>Root-only worker over Unix socket (<code>/run/traid.sock</code>)</li>
+            <li>Strict command whitelist and no shell interpolation</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="card">
+        <h3>Tier example (TRAID-1)</h3>
+        <p>3 × 4 TB + 1 × 2 TB drives:</p>
+        <table class="algorithm-table">
+          <thead>
+            <tr>
+              <th>Tier</th>
+              <th>Drives</th>
+              <th>Slice size</th>
+              <th>RAID level</th>
+              <th>Usable</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>0</td><td>4</td><td>2 TB</td><td>RAID 5</td><td>6 TB</td></tr>
+            <tr><td>1</td><td>3</td><td>2 TB</td><td>RAID 5</td><td>4 TB</td></tr>
+            <tr><td><strong>Total</strong></td><td></td><td></td><td></td><td><strong>10 TB</strong></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="grid" style="margin-top: 16px;">
+        <article class="card">
+          <h3>Platform features</h3>
+          <ul>
+            <li>Array create/migrate/grow/shrink/replace/delete</li>
+            <li>ext4 & btrfs with snapshots, scrub, balance, quotas</li>
+            <li>SMART tests, badblocks, and secure erase modes</li>
+            <li>KVM VM lifecycle + Docker container/image management</li>
+            <li>Scheduled backups (rsync, NFS, CIFS/Samba, btrfs send)</li>
+            <li>NFS and Samba sharing with path restrictions</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Architecture</h3>
+          <pre class="architecture">Browser
+  │  HTTP / WebSocket
+  ▼
+lighttpd → FastAPI (www-data)
+  │
+  ▼
+Unix Socket /run/traid.sock
+  ▼
+Worker daemon (root)
+  ├─ mdadm / lvm2 / parted
+  ├─ btrfs-progs / smartctl / shred
+  ├─ virsh / docker
+  └─ rsync / exportfs / smbd</pre>
+        </article>
+      </section>
+
+      <footer>
+        Built as a static page for easy Cloudflare Pages deployment. Learn more in the
+        <a href="https://github.com/albal/traid" target="_blank" rel="noreferrer">TRAID repository</a>.
+      </footer>
+    </main>
+
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const toggle = document.getElementById("theme-toggle");
+        const media = window.matchMedia("(prefers-color-scheme: dark)");
+        const savedTheme = localStorage.getItem("traid-theme");
+
+        const setTheme = (theme, persist = false) => {
+          root.dataset.theme = theme;
+          toggle.textContent = theme === "dark" ? "Use light mode" : "Use dark mode";
+          if (persist) {
+            localStorage.setItem("traid-theme", theme);
+          }
+        };
+
+        setTheme(savedTheme || (media.matches ? "dark" : "light"));
+
+        toggle.addEventListener("click", () => {
+          const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
+          setTheme(nextTheme, true);
+        });
+
+        media.addEventListener("change", (event) => {
+          if (!localStorage.getItem("traid-theme")) {
+            setTheme(event.matches ? "dark" : "light");
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
